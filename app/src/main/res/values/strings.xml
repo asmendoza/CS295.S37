@@ -13,6 +13,12 @@
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_question">Don\'t have an account yet?</string>
     <string name="remember_me">Remember me</string>
+    <string name="role">Role</string>
     <string name="title_activity_maps">Map</string>
+    <string-array name="roles">
+        <item>Reporter</item>
+        <item>Responder</item>
+        <item>News Agency</item>
+    </string-array>
 
 </resources>
