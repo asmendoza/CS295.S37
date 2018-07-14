@@ -1,18 +1,27 @@
 <resources>
     <string name="app_name">Watch Out!</string>
     <string name="app_subtitle">A Crowd-Sourced Urban Hazard Reporting Mobile Application</string>
+    <string name="cancel">Cancel</string>
     <string name="copyright">Copyright 2018</string>
+    <string name="description">Description</string>
+    <string name="geolocation_on">Geolocation On</string>
+    <string name="geolocation_off">Geolocation Off</string>
+    <string name="hazard_type">Hazard Type</string>
     <string name="hint_email">Email</string>
     <string name="hint_full_name">Full name</string>
+    <string name="hint_location">Hazard address</string>
     <string name="hint_password">Password</string>
     <string name="hint_repeat_password">Repeat password</string>
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="sign_in">Sign In</string>
+    <string name="location">Location</string>
     <string name="logo_description">Application logo</string>
+    <string name="ok">OK</string>
+    <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_question">Don\'t have an account yet?</string>
+    <string name="profile">View Profile</string>
     <string name="remember_me">Remember me</string>
+    <string name="report">Report</string>
+    <string name="report_title">Report title</string>
     <string name="role">Role</string>
     <string name="title_activity_maps">Map</string>
     <string-array name="roles">
@@ -20,5 +29,10 @@
         <item>Responder</item>
         <item>News Agency</item>
     </string-array>
-
+    <string-array name="hazards">
+        <item>Biological Hazard</item>
+        <item>Traffic Hazard</item>
+        <item>Pedestrian Hazard</item>
+        <item>Waste Management Hazard</item>
+    </string-array>
 </resources>

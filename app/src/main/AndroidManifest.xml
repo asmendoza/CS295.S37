@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.admu.cs295s37.watchout" >
+    package="edu.admu.cs295s37.watchout">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,8 +19,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".RegisterActivity_" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +44,9 @@
             android:name=".MapsActivity_"
             android:label="@string/title_activity_maps" />
         <activity android:name=".LoginActivity_" />
-        <!--activity android:name=".RegisterActivity_"></activity-->
+        <activity android:name=".RegisterActivity_"></activity>
+        <activity android:name=".ReporterMapActivity_" />
+        <activity android:name=".NewReportActivity_"></activity>
     </application>
 
 </manifest>
