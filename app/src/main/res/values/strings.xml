@@ -1,12 +1,18 @@
 <resources>
     <string name="app_name">Watch Out!</string>
+    <string name="app_subtitle">A Crowd-Sourced Urban Hazard Reporting Mobile Application</string>
+    <string name="copyright">Copyright 2018</string>
     <string name="hint_email">Email</string>
+    <string name="hint_full_name">Full name</string>
     <string name="hint_password">Password</string>
-    <string name="login">Login</string>
+    <string name="hint_repeat_password">Repeat password</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="sign_in">Sign In</string>
     <string name="logo_description">Application logo</string>
-    <string name="register">Sign Up</string>
-    <string name="register_question">Don\'t have an account yet?</string>
-    <string name="rememberme">Remember me</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_question">Don\'t have an account yet?</string>
+    <string name="remember_me">Remember me</string>
     <string name="title_activity_maps">Map</string>
 
 </resources>
