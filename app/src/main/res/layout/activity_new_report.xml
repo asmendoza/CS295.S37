@@ -15,10 +15,10 @@
         android:contentDescription="@string/logo_description"
         android:src="@mipmap/ic_launcher_round" />
 
-        <Space
-            android:id="@+id/space1"
-            android:layout_width="match_parent"
-            android:layout_height="15dp" />
+    <Space
+        android:id="@+id/space1"
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
 
     <EditText
         android:id="@+id/etTitle"
@@ -50,7 +50,7 @@
             android:id="@+id/spnHazardType"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:entries="@array/hazards"
             android:minHeight="24dp"
             tools:dropDownWidth="wrap_content" />
@@ -77,15 +77,18 @@
 
         <Switch
             android:id="@+id/swGeolocation"
+            style="@android:style/Widget.Holo.Light.CompoundButton.Switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:textAlignment="textEnd"
-            android:textOff="@string/geolocation_off"
-            android:textOn="@string/geolocation_on"
-            android:textSize="18sp"
-            tools:checked="true" />
+            android:gravity="right|center_vertical"
+            android:showText="true"
+            android:text="@string/geolocation"
+            android:textAllCaps="false"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            tools:checked="false" />
     </LinearLayout>
 
     <AutoCompleteTextView
@@ -100,8 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
+        android:gravity="top"
         android:hint="@string/description"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:textAlignment="textStart" />
 
     <Space
         android:id="@+id/space4"
@@ -111,6 +117,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="bottom"
         android:orientation="horizontal">
 
         <Button

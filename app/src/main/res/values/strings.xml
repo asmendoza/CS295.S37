@@ -4,8 +4,7 @@
     <string name="cancel">Cancel</string>
     <string name="copyright">Copyright 2018</string>
     <string name="description">Description</string>
-    <string name="geolocation_on">Geolocation On</string>
-    <string name="geolocation_off">Geolocation Off</string>
+    <string name="geolocation">Geolocation</string>
     <string name="hazard_type">Hazard Type</string>
     <string name="hint_email">Email</string>
     <string name="hint_full_name">Full name</string>
@@ -14,7 +13,9 @@
     <string name="hint_repeat_password">Repeat password</string>
     <string name="location">Location</string>
     <string name="logo_description">Application logo</string>
+    <string name="off">Off</string>
     <string name="ok">OK</string>
+    <string name="on">On</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_question">Don\'t have an account yet?</string>
@@ -31,8 +32,12 @@
     </string-array>
     <string-array name="hazards">
         <item>Biological Hazard</item>
-        <item>Traffic Hazard</item>
+        <item>Chemical Hazard</item>
+        <item>Electric Hazard</item>
+        <item>Fire Hazard</item>
         <item>Pedestrian Hazard</item>
+        <item>Traffic Hazard</item>
         <item>Waste Management Hazard</item>
+        <item>Other</item>
     </string-array>
 </resources>
