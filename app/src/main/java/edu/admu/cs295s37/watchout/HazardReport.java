@@ -11,9 +11,12 @@ import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
+/**
+ * HazardReport contains hazard report details.
+ */
 public class HazardReport extends RealmObject {
     @PrimaryKey
-    private String hid = UUID.randomUUID().toString();
+    private String hrid = UUID.randomUUID().toString();
     @Required
     private Date dateReported;
     @Required
@@ -29,12 +32,12 @@ public class HazardReport extends RealmObject {
     @Required
     private String reporter;
 
-    private int confirmed;
+    private boolean confirmed;
 
     private boolean hasRespondedTo;
     private String responder;
 
-    private int confirmedResolved;
+    private boolean confirmedResolved;
 
 
     

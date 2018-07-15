@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Watch Out!</string>
     <string name="app_subtitle">A Crowd-Sourced Urban Hazard Reporting Mobile Application</string>
+    <string name="back">Back</string>
     <string name="cancel">Cancel</string>
+    <string name="confirm_report">Confirm Report</string>
+    <string name="confirm_resolved">Confirm Resolved</string>
     <string name="copyright">Copyright 2018</string>
+    <string name="delete">Delete</string>
     <string name="description">Description</string>
+    <string name="edit">Edit</string>
+    <string name="edit_profile">Edit Profile</string>
     <string name="geolocation">Geolocation</string>
     <string name="hazard_type">Hazard Type</string>
     <string name="hint_email">Email</string>
@@ -24,12 +30,8 @@
     <string name="report">Report</string>
     <string name="report_title">Report title</string>
     <string name="role">Role</string>
+    <string name="status">Status</string>
     <string name="title_activity_maps">Map</string>
-    <string-array name="roles">
-        <item>Reporter</item>
-        <item>Responder</item>
-        <item>News Agency</item>
-    </string-array>
     <string-array name="hazards">
         <item>Biological Hazard</item>
         <item>Chemical Hazard</item>
@@ -37,7 +39,12 @@
         <item>Fire Hazard</item>
         <item>Pedestrian Hazard</item>
         <item>Traffic Hazard</item>
-        <item>Waste Management Hazard</item>
+        <item>Sanitation Hazard</item>
         <item>Other</item>
+    </string-array>
+    <string-array name="roles">
+        <item>Reporter</item>
+        <item>Responder</item>
+        <item>News Agency</item>
     </string-array>
 </resources>

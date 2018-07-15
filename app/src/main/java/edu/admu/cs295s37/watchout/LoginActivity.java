@@ -6,10 +6,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-@EActivity
+@EActivity(R.layout.activity_login)
 class LoginActivity extends AppCompatActivity {
 
     @ViewById
@@ -23,9 +24,10 @@ class LoginActivity extends AppCompatActivity {
     @ViewById
     Button bSignUp;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    @AfterViews
+    public void init(){
+
     }
+
+
 }
