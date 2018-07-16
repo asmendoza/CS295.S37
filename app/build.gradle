@@ -35,7 +35,7 @@ dependencies {
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     implementation "org.androidannotations:androidannotations-api:$AAVersion"
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     annotationProcessor 'io.realm:realm-android-library:5.3.1'
     implementation 'io.realm:android-adapters:2.1.0'
 }

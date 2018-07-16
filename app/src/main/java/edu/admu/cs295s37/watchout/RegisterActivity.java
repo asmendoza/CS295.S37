@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                         realm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {
-                            User user = realm.where(User.class).equalTo("hrid", usr.getUid()).findFirst();
+                            User user = realm.where(User.class).equalTo("uid", usr.getUid()).findFirst();
                             user.setFullName(fullName);
                             user.setPassword(pword);
                             user.setRole(role);

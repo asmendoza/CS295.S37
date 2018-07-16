@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
@@ -34,27 +35,52 @@ public class HazardReport extends RealmObject {
     private String imgPath;
     @Required
     private String reporter;
-    private boolean confirmed;
-    private ArrayList<String> confirmedUsers;
-    private boolean responded;
+//    private boolean confirmed;
+    private RealmList<String> confirmedUsers;
+//    private boolean responded;
     private String responder;
-    private boolean confirmedResolved;
-    private ArrayList<String> confirmedResolvedUsers;
+//    private boolean confirmedResolved;
+    private RealmList<String> confirmedResolvedUsers;
 
-    public void setConfirmedUsers(ArrayList<String> confirmedUsers) {
-        this.confirmedUsers = confirmedUsers;
+    public void HazaradReport() {
+        this.confirmedUsers = new RealmList<String>();
+        this.confirmedResolvedUsers = new RealmList<String>();
     }
 
-    public void setConfirmedResolvedUsers(ArrayList<String> confirmedResolvedUsers) {
-        this.confirmedResolvedUsers = confirmedResolvedUsers;
+//    public void setConfirmedUsers(RealmList<String> confirmedUsers) {
+//        this.confirmedUsers = confirmedUsers;
+//    }
+//
+//    public void setConfirmedResolvedUsers(RealmList<String> confirmedResolvedUsers) {
+//        this.confirmedResolvedUsers = confirmedResolvedUsers;
+//    }
+
+    public void addConfirmedUser(String uid){
+        this.confirmedUsers.add(uid);
     }
 
-    public ArrayList<String> getConfirmedUsers() {
+    public void addConfirmedResolvedUser(String uid){
+        this.confirmedResolvedUsers.add(uid);
+    }
+
+    public void removeConfirmedUser(String uid){
+        this.confirmedUsers.remove(uid);
+    }
+
+    public void removeConfirmedResolvedUser(String uid){
+        this.confirmedResolvedUsers.remove(uid);
+    }
+
+    public void removeAllConfirmedResolvedUsers(){
+        this.confirmedResolvedUsers = new RealmList<String>();
+    }
+
+    public RealmList<String> getConfirmedUsers() {
 
         return confirmedUsers;
     }
 
-    public ArrayList<String> getConfirmedResolvedUsers() {
+    public RealmList<String> getConfirmedResolvedUsers() {
         return confirmedResolvedUsers;
     }
 
@@ -134,21 +160,21 @@ public class HazardReport extends RealmObject {
         this.reporter = reporter;
     }
 
-    public boolean isConfirmed() {
-        return confirmed;
-    }
+//    public boolean isConfirmed() {
+//        return confirmed;
+//    }
+//
+//    public void setConfirmed(boolean confirmed) {
+//        this.confirmed = confirmed;
+//    }
 
-    public void setConfirmed(boolean confirmed) {
-        this.confirmed = confirmed;
-    }
-
-    public boolean isResponded() {
-        return responded;
-    }
-
-    public void setResponded(boolean responded) {
-        this.responded = responded;
-    }
+//    public boolean isResponded() {
+//        return responded;
+//    }
+//
+//    public void setResponded(boolean responded) {
+//        this.responded = responded;
+//    }
 
     public String getResponder() {
         return responder;
@@ -158,11 +184,11 @@ public class HazardReport extends RealmObject {
         this.responder = responder;
     }
 
-    public boolean isConfirmedResolved() {
-        return confirmedResolved;
-    }
-
-    public void setConfirmedResolved(boolean confirmedResolved) {
-        this.confirmedResolved = confirmedResolved;
-    }
+//    public boolean isConfirmedResolved() {
+//        return confirmedResolved;
+//    }
+//
+//    public void setConfirmedResolved(boolean confirmedResolved) {
+//        this.confirmedResolved = confirmedResolved;
+//    }
 }

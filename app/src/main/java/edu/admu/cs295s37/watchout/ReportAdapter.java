@@ -64,23 +64,22 @@ public class ReportAdapter extends RealmBaseAdapter<HazardReport> implements Lis
 
         title.setText(hr.getTitle());
         StringBuilder statusText = new StringBuilder();
-        if(hr.isResponded()){
-            if(hr.isConfirmed()){
-                statusText.append(hr.getConfirmedUsers().size() + " user/s confirmed resolution!");
+        if(hr.getResponder()!=null){
+            if(hr.getConfirmedResolvedUsers().size() != 0){
+                statusText.append(hr.getConfirmedResolvedUsers().size() + " user/s confirmed resolution!");
             }
             else{
                 statusText.append("Resolved!");
             }
         }
         else {
-            if(hr.isConfirmed()){
-                statusText.append(hr.getConfirmedResolvedUsers().size() + " user/s confirmed!");
+            if(hr.getConfirmedUsers().size() != 0){
+                statusText.append(hr.getConfirmedUsers().size() + " user/s confirmed!");
             }
             else{
                 statusText.append("Reported!");
             }
         }
-
         status.setText(statusText);
         System.out.println(hr.getImgPath());
         File savedImage = new File(hr.getImgPath());

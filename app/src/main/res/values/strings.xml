@@ -3,8 +3,9 @@
     <string name="app_subtitle">A Crowd-Sourced Urban Hazard Reporting Mobile Application</string>
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
-    <string name="confirm_report">Confirm Report</string>
-    <string name="confirm_resolved">Confirm Resolved</string>
+    <string name="confirm">Confirm</string>
+    <string name="confirm_report">Report</string>
+    <string name="confirm_resolved">Resolved</string>
     <string name="copyright">Copyright \u00A9 2018</string>
     <string name="delete">Delete</string>
     <string name="description">Description</string>
@@ -30,6 +31,7 @@
     <string name="remember_me">Remember me</string>
     <string name="report">Report</string>
     <string name="report_title">Report title</string>
+    <string name="resolve">Resolve</string>
     <string name="role">Role</string>
     <string name="status">Status</string>
     <string name="title">Title</string>
