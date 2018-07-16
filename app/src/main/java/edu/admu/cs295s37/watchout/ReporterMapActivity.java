@@ -63,10 +63,10 @@ public class ReporterMapActivity extends FragmentActivity implements OnMapReadyC
 
     @AfterViews
     public void init(){
-        realm = Realm.getDefaultInstance();
+        realm = MyRealm.getRealm();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.reporter_map);
         mapFragment.getMapAsync(this);
 
         // Construct a GeoDataClient.
@@ -91,6 +91,7 @@ public class ReporterMapActivity extends FragmentActivity implements OnMapReadyC
 
     @Click(R.id.bSignOut)
     public void bSignOut() {
+        MyRealm.logoutUser();
         finish();
     }
 

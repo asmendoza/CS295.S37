@@ -58,7 +58,7 @@ public class ReportDetailActivity extends AppCompatActivity {
 
     @AfterViews
     public void init(){
-        realm = Realm.getDefaultInstance();
+        realm = MyRealm.getRealm();
 
         user = realm.where(User.class).equalTo("uid",uid).findFirst();
 

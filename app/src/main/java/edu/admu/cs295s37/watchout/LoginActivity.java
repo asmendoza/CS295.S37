@@ -1,6 +1,7 @@
 package edu.admu.cs295s37.watchout;
 
 import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -47,8 +48,17 @@ class LoginActivity extends AppCompatActivity {
 
     @Click(R.id.bSignIn)
     public void bSingIn(){
+        if(!MyRealm.isNetworkAvailable(this)) {
+            Snackbar.make(bSignIn,"No internet connection detected. Try again later."
+                    ,Snackbar.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
         String email = etEmail.getText().toString();
         String pword = etPassword.getText().toString();
+
+        realm = MyRealm.getRealm(email);
 
         SharedPreferences prefs = getSharedPreferences("UserData",MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -109,8 +119,15 @@ class LoginActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @Override
     protected void onDestroy(){
         super.onDestroy();
+        MyRealm.logoutUser();
         realm.close();
     }
 

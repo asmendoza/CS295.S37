@@ -59,7 +59,7 @@ public class NewReportActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
-        realm = Realm.getDefaultInstance();
+        realm = MyRealm.getRealm();
         if (hrid!=null) {
             hr = realm.where(HazardReport.class).equalTo("hrid", hrid).findFirst();
             etTitle.setText(hr.getTitle());

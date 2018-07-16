@@ -2,6 +2,7 @@ package edu.admu.cs295s37.watchout;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -56,8 +57,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
-        realm = Realm.getDefaultInstance();
         if (uid!=null) {
+            realm = MyRealm.getRealm();
             usr = realm.where(User.class).equalTo("uid", uid).findFirst();
             etFullName.setText(usr.getFullName());
             etEmail.setText(usr.getEmail());
@@ -77,10 +78,19 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Click(R.id.bOK)
     public void bOK(){
+        if(!MyRealm.isNetworkAvailable(this)) {
+            Snackbar.make(bOK,"No internet connection detected. Try again later."
+                    ,Snackbar.LENGTH_SHORT)
+                    .show();
+            return;
+        }
+
         final String fullName = etFullName.getText().toString();
         final String email = etEmail.getText().toString();
         final String pword = etPassword.getText().toString();
         final String role = spnRole.getSelectedItem().toString();
+
+        realm = MyRealm.getRealm(email);
 
         User user;
 
@@ -175,6 +185,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+
+
     @NonNull
     private File saveFile(byte[] jpeg) throws IOException {
         File getImageDir = getExternalCacheDir();
@@ -203,6 +215,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
+        MyRealm.logoutUser();
         realm.close();
     }
 

@@ -46,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
-        realm = Realm.getDefaultInstance();
+        realm = MyRealm.getRealm();
 
         RealmResults<User> userList = realm.where(User.class).equalTo("uid",uid).findAll();
         File savedImage = new File(userList.first().getAvatarPath());
