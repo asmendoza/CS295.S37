@@ -17,18 +17,31 @@
         android:src="@mipmap/ic_launcher_round" />
 
     <Space
-        android:id="@+id/space"
+        android:id="@+id/space1"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="15dp" />
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvSubtitle"
-        android:layout_width="match_parent"
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/app_subtitle"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="14sp" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <EditText
         android:id="@+id/etEmail"
@@ -46,24 +59,23 @@
         android:hint="@string/hint_password"
         android:inputType="textPassword" />
 
-    <LinearLayout
+    <CheckBox
+        android:id="@+id/cbRememberMe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:checked="false"
+        android:text="@string/remember_me"
+        android:textSize="18sp" />
 
-        <CheckBox
-            android:id="@+id/cbRememberMe"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:text="@string/remember_me"
-            android:textSize="18sp" />
-    </LinearLayout>
+    <Space
+        android:id="@+id/space3"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 
     <Button
         android:id="@+id/bSignIn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
         android:textAllCaps="false"
@@ -79,16 +91,16 @@
 
     <Button
         android:id="@+id/bSignUp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textSize="18sp" />
 
     <Space
-        android:id="@+id/space2"
+        android:id="@+id/space4"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="40dp" />
 
     <TextView
         android:id="@+id/tvCopyright"

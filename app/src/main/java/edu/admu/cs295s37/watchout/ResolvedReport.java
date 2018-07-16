@@ -1,15 +1,9 @@
 package edu.admu.cs295s37.watchout;
 
-import java.util.Date;
-import java.util.UUID;
-
 import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
-/**
- * ConfirmedReport contains Hazard Report IDs with those User IDs that confirmed it.
- */
-public class ConfirmedReport extends RealmObject {
+
+public class ResolvedReport extends RealmObject {
     @Required
     private String uid;
     @Required

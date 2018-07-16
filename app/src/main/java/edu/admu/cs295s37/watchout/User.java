@@ -9,7 +9,7 @@ import io.realm.annotations.Required;
 
 public class User extends RealmObject {
     @Ignore
-    public final int REPORTER = 0, RESPONDER = 1, NEWS_AGENCY = 2;
+    public static final int REPORTER = 0, RESPONDER = 1, NEWS_AGENCY = 2;
 
     @PrimaryKey
     private String uid = UUID.randomUUID().toString();
@@ -19,8 +19,8 @@ public class User extends RealmObject {
     private String email;
     @Required
     private String password;
-
-    private int role;
+    @Required
+    private String role;
 
     private String avatarPath;
 
@@ -52,11 +52,11 @@ public class User extends RealmObject {
         this.password = password;
     }
 
-    public int getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

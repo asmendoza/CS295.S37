@@ -5,7 +5,7 @@
     <string name="cancel">Cancel</string>
     <string name="confirm_report">Confirm Report</string>
     <string name="confirm_resolved">Confirm Resolved</string>
-    <string name="copyright">Copyright 2018</string>
+    <string name="copyright">Copyright \u00A9 2018</string>
     <string name="delete">Delete</string>
     <string name="description">Description</string>
     <string name="edit">Edit</string>
@@ -23,14 +23,16 @@
     <string name="ok">OK</string>
     <string name="on">On</string>
     <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Off</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_question">Don\'t have an account yet?</string>
-    <string name="profile">View Profile</string>
+    <string name="profile">Profile</string>
     <string name="remember_me">Remember me</string>
     <string name="report">Report</string>
     <string name="report_title">Report title</string>
     <string name="role">Role</string>
     <string name="status">Status</string>
+    <string name="title">Title</string>
     <string name="title_activity_maps">Map</string>
     <string-array name="hazards">
         <item>Biological Hazard</item>
