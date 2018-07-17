@@ -49,9 +49,11 @@ public class ProfileActivity extends AppCompatActivity {
         realm = MyRealm.getRealm();
 
         RealmResults<User> userList = realm.where(User.class).equalTo("uid",uid).findAll();
-        File savedImage = new File(userList.first().getAvatarPath());
-        if(savedImage!=null){
-            Picasso.with(this).load(savedImage).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ivAvatar);
+        if(!userList.first().getAvatarPath().trim().equals("")) {
+            File savedImage = new File(userList.first().getAvatarPath());
+            if (savedImage != null) {
+                Picasso.with(this).load(savedImage).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ivAvatar);
+            }
         }
         tvFullName.setText(userList.first().getFullName());
         tvRole.setText(userList.first().getRole());
@@ -68,7 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Click(R.id.bBack)
     public void bBack(){
-        finish();
+        onBackPressed();
     }
 
     public void editHazardReport(View view){
@@ -91,5 +93,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         realm.close();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

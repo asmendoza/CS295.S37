@@ -1,7 +1,5 @@
 package edu.admu.cs295s37.watchout;
 
-
-
 import android.location.Location;
 
 import java.util.ArrayList;
@@ -27,8 +25,8 @@ public class HazardReport extends RealmObject {
     String hazardType;
     @Required
     private String location;
-    //private float latitude;
-    //private float longitude;
+    private double latitude;
+    private double longitude;
     @Required
     private String description;
     @Required
@@ -120,21 +118,21 @@ public class HazardReport extends RealmObject {
         this.title = title;
     }
 
-//    public float getLatitude() {
-//        return latitude;
-//    }
+    public double getLatitude() {
+        return latitude;
+    }
 
-//    public void setLatitude(float latitude) {
-//        this.latitude = latitude;
-//    }
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
 
-//    public float getLongitude() {
-//        return longitude;
-//    }
+    public double getLongitude() {
+        return longitude;
+    }
 
-//    public void setLongitude(float longitude) {
-//        this.longitude = longitude;
-//    }
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 
     public String getDescription() {
         return description;

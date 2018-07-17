@@ -12,4 +12,5 @@ final class Constants {
     // **** (remember to use 'http' instead of 'https' if you didn't setup SSL on ROS yet)
     static final String INSTANCE_ADDRESS = "watch-out.us1.cloud.realm.io";
     static final String AUTH_URL = "https://" + INSTANCE_ADDRESS + "/auth";
+    static final String REALM_INSTANCE_URL = "realms://"  + INSTANCE_ADDRESS;
 }

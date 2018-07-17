@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -56,15 +57,24 @@ public class NewReportActivity extends AppCompatActivity {
     String hrid;
     @Extra
     String uid;
+    @Extra
+    LatLng latLng;
 
     @AfterViews
     public void init() {
         realm = MyRealm.getRealm();
+        if(latLng != null){
+            String loc = latLng.latitude + ", " + latLng.longitude;
+            actvLocation.setText(loc);
+            actvLocation.setHint(loc);
+        }
         if (hrid!=null) {
             hr = realm.where(HazardReport.class).equalTo("hrid", hrid).findFirst();
             etTitle.setText(hr.getTitle());
             spnHazardType.setSelection(((ArrayAdapter)spnHazardType.getAdapter()).getPosition(hr.getHazardType()));
-            actvLocation.setText(hr.getLocation());
+            //actvLocation.setText(hr.getLocation());
+            String loc  = hr.getLatitude() + ", " + hr.getLongitude();
+            actvLocation.setText(loc);
             etDescription.setText(hr.getDescription());
             savedImage = new File(hr.getImgPath());
             Picasso.with(this).load(savedImage).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ivReport);
@@ -93,6 +103,11 @@ public class NewReportActivity extends AppCompatActivity {
                     hazRep.setTitle(title);
                     hazRep.setHazardType(hazardType);
                     hazRep.setLocation(location);
+
+                    String[] locate = location.split(", ");
+                    hazRep.setLatitude(Double.parseDouble(locate[0]));
+                    hazRep.setLongitude(Double.parseDouble(locate[1]));
+
                     hazRep.setDescription(description);
                     if (savedImage != null) {
                         hazRep.setImgPath(savedImage.getAbsolutePath());
@@ -105,9 +120,16 @@ public class NewReportActivity extends AppCompatActivity {
                 hazRep.setTitle(title);
                 hazRep.setHazardType(hazardType);
                 hazRep.setLocation(location);
+
+                String[] locate = location.split(", ");
+                hazRep.setLatitude(Double.parseDouble(locate[0]));
+                hazRep.setLongitude(Double.parseDouble(locate[1]));
+
                 hazRep.setDescription(description);
                 if (savedImage != null) {
                     hazRep.setImgPath(savedImage.getAbsolutePath());
+                } else {
+                    hazRep.setImgPath("");
                 }
                 hazRep.setReporter(uid);
                 realm.beginTransaction();
@@ -138,7 +160,7 @@ public class NewReportActivity extends AppCompatActivity {
             }
         }
         setResult(0);
-        finish();
+        onBackPressed();
     }
 
     public void onActivityResult(int requestCode, int responseCode, Intent data){
@@ -185,5 +207,11 @@ public class NewReportActivity extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         realm.close();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -1,10 +1,12 @@
 package edu.admu.cs295s37.watchout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,7 +29,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import io.realm.ObjectServerError;
 import io.realm.Realm;
+import io.realm.SyncCredentials;
+import io.realm.SyncUser;
 
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends AppCompatActivity {
@@ -54,10 +59,14 @@ public class RegisterActivity extends AppCompatActivity {
     User usr;
     File savedImage;
     boolean hasSavedImage;
+    Context c;
+    boolean editMode;
 
     @AfterViews
     public void init() {
+        c = this;
         if (uid!=null) {
+            editMode = true;
             realm = MyRealm.getRealm();
             usr = realm.where(User.class).equalTo("uid", uid).findFirst();
             etFullName.setText(usr.getFullName());
@@ -90,58 +99,97 @@ public class RegisterActivity extends AppCompatActivity {
         final String pword = etPassword.getText().toString();
         final String role = spnRole.getSelectedItem().toString();
 
-        realm = MyRealm.getRealm(email);
+        if (fullName.trim().length() == 0
+                && pword.trim().length() == 0
+                && email.trim().length() == 0) {
+            Toast toast = Toast.makeText(c, "All fields required!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
 
-        User user;
+            return;
+        }
 
-        if (fullName.length()!=0 && pword.length()!=0 && email.length()!=0 ) {
-            if (usr==null && isInUserList(email)) {
-                Toast toast = Toast.makeText(this, "An account has been registered with this email!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.show();
+        if (!pword.trim().equals(etPassRepeat.getText().toString().trim())) {
+            Toast toast = Toast.makeText(c, "Passwords don't match!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+
+            return;
+        }
+        if(editMode){
+            realm.beginTransaction();
+            User user = usr;
+            user.setFullName(fullName);
+            user.setEmail(email);
+            user.setPassword(pword);
+            user.setRole(role);
+            if (savedImage != null) {
+                user.setAvatarPath(savedImage.getAbsolutePath());
+            }else {
+                user.setAvatarPath("");
             }
-            else {
-                if (pword.equals(etPassRepeat.getText().toString())) {
-                    if (usr != null) {
-                        realm.executeTransaction(new Realm.Transaction() {
-                            @Override
-                            public void execute(Realm realm) {
-                            User user = realm.where(User.class).equalTo("uid", usr.getUid()).findFirst();
+            //realm.copyToRealm(user);
+            realm.commitTransaction();
+
+            finish();
+        }else {
+            try {
+
+                if (SyncUser.current() != null) {
+                    MyRealm.logoutUser();
+                }
+
+                SyncCredentials credentials = SyncCredentials.usernamePassword(email, pword, true);
+
+                //SyncUser.logIn(credentials, Constants.AUTH_URL);
+
+                SyncUser.logInAsync(credentials, Constants.AUTH_URL, new SyncUser.Callback<SyncUser>() {
+                    @Override
+                    public void onSuccess(SyncUser result) {
+                        Log.e("Login Success", result.getIdentity());
+                        realm = MyRealm.getRealm();
+
+                        
+                        User user;
+
+                        if (isInUserList(email)) {
+                            Toast toast = Toast.makeText(c, "An account has been registered with this email!", Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                            toast.show();
+                        } else {
+                            user = new User();
                             user.setFullName(fullName);
+                            user.setEmail(email);
                             user.setPassword(pword);
                             user.setRole(role);
                             if (savedImage != null) {
                                 user.setAvatarPath(savedImage.getAbsolutePath());
+                            }else {
+                                user.setAvatarPath("");
                             }
-                            }
-                        });
-                    } else {
-                        user = new User();
-                        user.setFullName(fullName);
-                        user.setEmail(email);
-                        user.setPassword(pword);
-                        user.setRole(role);
-                        if (savedImage != null) {
-                            user.setAvatarPath(savedImage.getAbsolutePath());
-                        }
-                        realm.beginTransaction();
-                        realm.copyToRealm(user);
-                        realm.commitTransaction();
 
+                            realm.beginTransaction();
+                            realm.copyToRealm(user);
+                            realm.commitTransaction();
+
+                            finish();
+                        }
                     }
-                    finish();
-                }
-                else {
-                    Toast toast = Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                }
+
+                    @Override
+                    public void onError(ObjectServerError error) {
+                        Log.e("Login Error", error.toString());
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast toast = Toast.makeText(this, "Cannot login to server!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
+            } finally {
+                MyRealm.logoutUser();
             }
-        }
-        else {
-            Toast toast = Toast.makeText(this, "All fields required!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
-            toast.show();
         }
 
     }
@@ -185,8 +233,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-
-
     @NonNull
     private File saveFile(byte[] jpeg) throws IOException {
         File getImageDir = getExternalCacheDir();
@@ -209,13 +255,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean isInUserList(String email) {
-        return realm.where(User.class).equalTo("email", email).findAll().size() > 0;
+        return realm.where(User.class).equalTo("email", email).findFirst() != null;
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        MyRealm.logoutUser();
         realm.close();
     }
 
