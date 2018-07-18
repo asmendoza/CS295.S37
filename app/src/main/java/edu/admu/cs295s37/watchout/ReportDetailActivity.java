@@ -20,6 +20,7 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 import io.realm.Realm;
+import io.realm.RealmChangeListener;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
@@ -58,6 +59,7 @@ public class ReportDetailActivity extends AppCompatActivity {
     LatLng latLng;
 
     User user;
+    RealmResults<HazardReport> hrs;
     HazardReport hr;
 
     @AfterViews
@@ -67,46 +69,61 @@ public class ReportDetailActivity extends AppCompatActivity {
         user = realm.where(User.class).equalTo("uid",uid).findFirst();
 
         if(hrid != null) {
-            hr = realm.where(HazardReport.class).equalTo("hrid", hrid).findFirst();
-            tvTitle.setText(hr.getTitle());
-            tvHazardType.setText(hr.getHazardType());
-            tvLocation.setText(hr.getLocation());
-            tvDescription.setText(hr.getDescription());
-            StringBuilder statusText = new StringBuilder();
-            if (hr.getResponder() != null) {
-                if (hr.getConfirmedResolvedUsers().size() != 0) {
-                    statusText.append(hr.getConfirmedResolvedUsers().size() + " user/s confirmed resolution!");
-                } else {
-                    statusText.append("Resolved!");
-                }
-            } else {
-                if (hr.getConfirmedUsers().size() != 0) {
-                    statusText.append(hr.getConfirmedUsers().size() + " user/s confirmed!");
-                } else {
-                    statusText.append("Reported!");
-                }
-            }
-            tvStatus.setText(statusText);
-
-            if (user.getRole().equals("Reporter")) {
-                lyConfirmation.setVisibility(View.VISIBLE);
-                swConfirmReport.setClickable(true);
-                swConfirmResolved.setClickable(false);
-                if (uid.equals(hr.getReporter())) {
-                    swConfirmReport.setClickable(false);
-                }
-                swConfirmReport.setChecked(hr.getConfirmedUsers().indexOf(uid) != -1);
-                if (hr.getResponder() != null) {
-                    swConfirmReport.setClickable(false);
-                    swConfirmResolved.setClickable(true);
-                    swConfirmResolved.setChecked(hr.getConfirmedResolvedUsers().indexOf(uid) != -1);
-                }
-            } else if (user.getRole().equals("Responder")) {
-                swResolve.setVisibility(View.VISIBLE);
-                swResolve.setClickable(true);
-                swResolve.setChecked(hr.getResponder().equals(uid));
-            }
+            hrs = realm.where(HazardReport.class).equalTo("hrid", hrid).findAllAsync();
         }
+
+        hrs.addChangeListener(new RealmChangeListener<RealmResults<HazardReport>>() {
+            @Override
+            public void onChange(RealmResults<HazardReport> hazardReports) {
+                for(HazardReport h:hazardReports){
+                    if(h.getHrid().equals(hrid)) {
+                        hr = h;
+
+                        tvTitle.setText(hr.getTitle());
+                        tvHazardType.setText(hr.getHazardType());
+                        tvLocation.setText(hr.getLocation());
+                        tvDescription.setText(hr.getDescription());
+                        StringBuilder statusText = new StringBuilder();
+                        if (hr.getResponder() != null) {
+                            if (hr.getConfirmedResolvedUsers().size() != 0) {
+                                statusText.append(hr.getConfirmedResolvedUsers().size() + " user/s confirmed resolution!");
+                            } else {
+                                statusText.append("Resolved!");
+                            }
+                        } else {
+                            if (hr.getConfirmedUsers().size() != 0) {
+                                statusText.append(hr.getConfirmedUsers().size() + " user/s confirmed!");
+                            } else {
+                                statusText.append("Reported!");
+                            }
+                        }
+                        tvStatus.setText(statusText);
+
+                        if (user.getRole().equals("Reporter")) {
+                            lyConfirmation.setVisibility(View.VISIBLE);
+                            swConfirmReport.setClickable(true);
+                            swConfirmResolved.setClickable(false);
+                            if (uid.equals(hr.getReporter())) {
+                                swConfirmReport.setClickable(false);
+                            }
+                            swConfirmReport.setChecked(hr.getConfirmedUsers().indexOf(uid) != -1);
+                            if (hr.getResponder() != null) {
+                                swConfirmReport.setClickable(false);
+                                swConfirmResolved.setClickable(true);
+                                swConfirmResolved.setChecked(hr.getConfirmedResolvedUsers().indexOf(uid) != -1);
+                            }
+                        } else if (user.getRole().equals("Responder")) {
+                            swResolve.setVisibility(View.VISIBLE);
+                            swResolve.setClickable(true);
+                            if(hr.getResponder() != null) {
+                                swResolve.setChecked(hr.getResponder().equals(uid));
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        });
 
     }
 

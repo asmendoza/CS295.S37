@@ -132,7 +132,10 @@ public class RegisterActivity extends AppCompatActivity {
             //realm.copyToRealm(user);
             realm.commitTransaction();
 
-            finish();
+            Toast toast = Toast.makeText(this, "User info updated!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.show();
+            onBackPressed();
         }else {
             try {
 
@@ -173,7 +176,11 @@ public class RegisterActivity extends AppCompatActivity {
                             realm.copyToRealm(user);
                             realm.commitTransaction();
 
-                            finish();
+                            Toast toast = Toast.makeText(c, "New user has been saved", Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                            toast.show();
+
+                            onBackPressed();
                         }
                     }
 
@@ -207,7 +214,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         setResult(0);
-        finish();
+        onBackPressed();
     }
 
     public void onActivityResult(int requestCode, int responseCode, Intent data)
@@ -265,4 +272,9 @@ public class RegisterActivity extends AppCompatActivity {
         realm.close();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

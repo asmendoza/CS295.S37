@@ -1,5 +1,6 @@
 package edu.admu.cs295s37.watchout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -60,9 +61,12 @@ public class NewReportActivity extends AppCompatActivity {
     @Extra
     LatLng latLng;
 
+    Context c;
+
     @AfterViews
     public void init() {
         realm = MyRealm.getRealm();
+        c = this;
         if(latLng != null){
             String loc = latLng.latitude + ", " + latLng.longitude;
             actvLocation.setText(loc);
@@ -112,6 +116,10 @@ public class NewReportActivity extends AppCompatActivity {
                     if (savedImage != null) {
                         hazRep.setImgPath(savedImage.getAbsolutePath());
                     }
+                    Toast toast = Toast.makeText(c, "Report updated successfully!", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
+
                     }
                 });
             } else {
@@ -135,9 +143,13 @@ public class NewReportActivity extends AppCompatActivity {
                 realm.beginTransaction();
                 realm.copyToRealm(hazRep);
                 realm.commitTransaction();
+
+                Toast toast = Toast.makeText(this, "New Report has been saved!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
             }
 
-            finish();
+            onBackPressed();
 
         }
         else {
