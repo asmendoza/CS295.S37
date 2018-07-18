@@ -350,7 +350,7 @@ public class ReporterMapActivity extends FragmentActivity
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        final Location loc = location;
+        final Location loc = mLastKnownLocation;
 
         AlertDialog addReport;
 
