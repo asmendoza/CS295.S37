@@ -7,7 +7,7 @@ import android.location.Location;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -76,7 +76,7 @@ public class ReporterMapActivity extends FragmentActivity
 
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int DEFAULT_ZOOM = 15;
-    private static final String TAG = MapsActivity.class.getSimpleName();
+    private static final String TAG = ReporterMapActivity.class.getSimpleName();
     //Katipunan
     private final LatLng mDefaultLocation = new LatLng(14.641209, 121.074599);
 

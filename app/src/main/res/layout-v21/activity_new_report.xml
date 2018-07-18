@@ -60,7 +60,6 @@
             tools:dropDownWidth="wrap_content" />
 
     </LinearLayout>
-
     <Space
         android:id="@+id/space3"
         android:layout_width="match_parent"
@@ -94,7 +93,7 @@
     </LinearLayout>
 
     <AutoCompleteTextView
-        android:id="@+id/actvLocation"
+        android:id="@+id/acevLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_location" />

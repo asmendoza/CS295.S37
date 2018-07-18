@@ -75,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
             etPassword.setText(usr.getPassword());
             etPassRepeat.setText(usr.getPassword());
             spnRole.setSelection(((ArrayAdapter)spnRole.getAdapter()).getPosition(usr.getRole()));
+            spnRole.setEnabled(false);
             savedImage = new File(usr.getAvatarPath());
             Picasso.with(this).load(savedImage).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ivAvatar);
         }

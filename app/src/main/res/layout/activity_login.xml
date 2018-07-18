@@ -14,12 +14,8 @@
         android:layout_height="128dp"
         android:layout_margin="5dp"
         android:contentDescription="@string/logo_description"
+        android:paddingBottom="10dp"
         android:src="@mipmap/ic_launcher_round" />
-
-    <Space
-        android:id="@+id/space1"
-        android:layout_width="match_parent"
-        android:layout_height="15dp" />
 
     <TextView
         android:id="@+id/tvAppName"
@@ -27,6 +23,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_name"
         android:textAlignment="center"
+        android:textAllCaps="true"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -35,19 +32,18 @@
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:paddingBottom="15dp"
         android:text="@string/app_subtitle"
         android:textSize="14sp" />
 
-    <Space
-        android:id="@+id/space2"
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingBottom="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
+
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
@@ -75,17 +71,11 @@
     </LinearLayout>
 
 
-    <Space
-        android:id="@+id/space3"
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
     <Button
         android:id="@+id/bSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
-        android:textAllCaps="false"
         android:textSize="18sp" />
 
     <TextView
@@ -93,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:paddingTop="15dp"
         android:text="@string/sign_up_question"
         android:textSize="18sp" />
 
@@ -101,19 +92,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
-        android:textAllCaps="false"
         android:textSize="18sp" />
-
-    <Space
-        android:id="@+id/space4"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
 
     <TextView
         android:id="@+id/tvCopyright"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:paddingTop="20dp"
         android:text="@string/copyright"
         android:textSize="14sp" />
 

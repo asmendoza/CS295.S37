@@ -91,6 +91,7 @@ public class ReportDetailActivity extends AppCompatActivity {
             if (user.getRole().equals("Reporter")) {
                 lyConfirmation.setVisibility(View.VISIBLE);
                 swConfirmReport.setClickable(true);
+                swConfirmResolved.setClickable(false);
                 if (uid.equals(hr.getReporter())) {
                     swConfirmReport.setClickable(false);
                 }
@@ -103,6 +104,7 @@ public class ReportDetailActivity extends AppCompatActivity {
             } else if (user.getRole().equals("Responder")) {
                 swResolve.setVisibility(View.VISIBLE);
                 swResolve.setClickable(true);
+                swResolve.setChecked(hr.getResponder().equals(uid));
             }
         }
 

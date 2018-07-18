@@ -4,8 +4,8 @@
     <string name="back">Back</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
-    <string name="confirm_report">Report</string>
-    <string name="confirm_resolved">Resolved</string>
+    <string name="confirm_report">Confirm Report</string>
+    <string name="confirm_resolved">Confirm Resolved</string>
     <string name="copyright">Copyright \u00A9 2018</string>
     <string name="delete">Delete</string>
     <string name="description">Description</string>
@@ -24,7 +24,7 @@
     <string name="ok">OK</string>
     <string name="on">On</string>
     <string name="sign_in">Sign In</string>
-    <string name="sign_out">Sign Off</string>
+    <string name="sign_out">Sign Out</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_question">Don\'t have an account yet?</string>
     <string name="profile">Profile</string>

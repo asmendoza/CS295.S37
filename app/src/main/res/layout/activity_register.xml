@@ -75,15 +75,17 @@
 
         <TextView
             android:id="@+id/tvRole"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="4"
+            android:background="#96bdbdbd"
+            android:paddingStart="2dp"
             android:text="@string/role"
             android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spnRole"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:entries="@array/roles"
@@ -107,7 +109,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/ok"
-            android:textAllCaps="false"
             android:textSize="18sp" />
 
         <Button
@@ -116,7 +117,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/cancel"
-            android:textAllCaps="false"
             android:textSize="18sp" />
 
     </LinearLayout>
