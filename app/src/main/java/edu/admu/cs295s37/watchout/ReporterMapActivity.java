@@ -126,7 +126,8 @@ public class ReporterMapActivity extends FragmentActivity
                     LatLng newLoc = new LatLng(location.getLatitude(), location.getLongitude());
                     //mMap.addMarker(new MarkerOptions().position(newLoc).title("I am here"));
                     mLastKnownLocation = location;
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newLoc,DEFAULT_ZOOM));
+                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(newLoc,DEFAULT_ZOOM));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation,DEFAULT_ZOOM));
 
 
                 }
